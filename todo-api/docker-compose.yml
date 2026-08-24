@@ -1,0 +1,19 @@
+
+#version: '3.8' #Version mas estable y usada actualmente
+
+services: # Obligatorio para definir los servicios que se van a levantar
+  postgres: #este es el nombre del servicio, puede ser cualquiera
+    image: postgres:15.3 #le dice a docker que imagen usar.postgres es el nombre en Docker Hub y 15.3 es la version de postgres que queremos usar,debe coincidir con la de docker desktop
+    container_name: todolist #nombre del contenedor
+    environment: #son las ENV que necesita el contenedor para configurarse. se define el usuario, la contraseña y el nombre de la base de datos.
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432" # El puerto se agrega 2 veces ya que uno corresponde al local y el otro al contenedor. 5432 puerto por defecto de postgres.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # postgres_data es el nombre del volumen que se va a crear y /var/lib/postgresql/data es la ruta donde postgres guarda los datos de la base de datos dentro del contenedor. Esto permite que los datos persistan incluso si el contenedor se elimina o se reinicia.
+  
+volumes:
+  postgres_data: # esto declara que ese volumen existe para que docker lo cree y gestione.
+      
