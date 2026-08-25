@@ -10,7 +10,7 @@ app.use(express.json());//esto sirve para que el servidor pueda entender las pet
 
 // Permite que acepte peticiones que venga del localhost 5174
 app.use(cors({
-    origin:'http://localhost:5174'
+    origin:['http://localhost:5173','http://localhost:5174']
 
 }))
 

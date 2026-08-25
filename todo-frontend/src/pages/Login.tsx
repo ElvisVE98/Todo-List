@@ -9,8 +9,11 @@ import { useAuth } from '../context/AuthContext';
 
 
 
+// Props define qué recibe el componente
+// onSwitch es una función que no recibe nada y no devuelve nada
+type Props = {onSwitch: () => void};
 
-const Login = () =>{
+const Login = ({onSwitch}: Props) =>{
 
     //estado para mostrar el error general del servidor
     const [error,setError] = useState('');
@@ -56,45 +59,79 @@ const Login = () =>{
 
 
     return(
-
-        <div className='min-h-screen flex items-center justify-center bg-linear-to-tl from-slate-50 to-violet-300'>
-            <h1>Iniciar Sesión</h1>
-
-            {/*Muestra Error general del Servidor*/}
-            {error && <p>{error}</p>}
-
-            {/*HandleSubmit valida primero con Zod, luego llama onSubmit*/}
-            <form onSubmit={handleSubmit(onSubmit)}>
-
-                {/*register conecta este input al formulario*/}
-                <input {...register('email')}
-                type='email'
-                placeholder='Correo Electronico'>
-                </input>
-
-                {/**Muestra el error de zod si el Email esta mal */}
-
-                {errors.email && <p>{errors.email.message}</p>}
-
-                <input {...register('password')}
-                type='password'
-                placeholder='Contraseña'>
-                </input>
-
-                 {/**Muestra el error de zod si la contraseña esta mal */}
-
-                 {errors.password && <p>{errors.password.message}</p>}
-
-                 {/**el "disabled" evita multiples envios mientra carga */}
-                 <button type='submit' disabled={cargando}>
-                    {cargando ? 'Cargando...' : 'Iniciar Sesión'}
-                 </button>
-
-
-            </form>
-        </div>
         
-    );
-}
+            <div className='w-full max-w-md'>
+    
+                {/* logo */}
+                <div className='flex items-center gap-2 mb-8'>
+                    <div className='bg-[#6C4DF6] p-2 rounded-xl'>
+                        <span className='text-white text-xl'>✓</span>
+                    </div>
+                    <span className='font-bold text-xl'>Tareo</span>
+                </div>
+    
+                {/* título y subtítulo */}
+                <h1 className='text-3xl mb-2 font-semibold'>Bienvenido de Vuelta</h1>
+                <p className='text-gray-500 mb-8'>Organiza tu día en un solo lugar.</p>
+    
+                {/* error general del servidor */}
+                {error && (
+                    <div className='bg-red-50 text-red-600 p-3 rounded-xl mb-4 text-sm'>
+                        {error}
+                    </div>
+                )}
+    
+                <form onSubmit={handleSubmit(onSubmit)}>
+    
+                    {/* campo email */}
+                    <div className='flex flex-col gap-1 mb-4'>
+                        <label className='text-sm font-medium text-gray-700'>Correo Electrónico</label>
+                        <input
+                            {...register('email')}
+                            type='email'
+                            placeholder='tu@email.com'
+                            className='w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
+                        />
+                        {errors.email && <p className='text-red-500 text-xs'>{errors.email.message}</p>}
+                    </div>
+    
+                    {/* campo contraseña */}
+                    <div className='flex flex-col gap-1 mb-4'>
+                        <label className='text-sm font-medium text-gray-700'>Contraseña</label>
+                        <input
+                            {...register('password')}
+                            type='password'
+                            placeholder='••••••••'
+                            className='w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
+                        />
+                        {errors.password && <p className='text-red-500 text-xs'>{errors.password.message}</p>}
+                    </div>
+    
+                    {/* botón submit */}
+                    <button
+                        type='submit'
+                        disabled={cargando}
+                        className='w-full bg-[#6C4DF6] text-white font-semibold py-3 rounded-xl hover:bg-[#5a3de0] transition-colors disabled:opacity-50 mt-2'
+                    >
+                        {cargando ? 'Cargando...' : 'Iniciar Sesión'}
+                    </button>
+    
+                </form>
+    
+                {/* link al registro - ahora usa onSwitch en vez de Link */}
+                {/* onSwitch activa la animación del panel en AuthPage */}
+                <p className='text-center text-sm text-gray-500 mt-6'>
+                    ¿No tienes cuenta?{' '}
+                    <button
+                        onClick={onSwitch}
+                        className='text-[#6C4DF6] font-semibold hover:underline'
+                    >
+                        Regístrate
+                    </button>
+                </p>
+    
+            </div>
+        );
+    };
 
 export default Login;

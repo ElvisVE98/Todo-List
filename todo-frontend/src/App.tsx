@@ -1,9 +1,8 @@
 import {Routes, Route, BrowserRouter,Navigate} from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import Login from './pages/Login';
-import Registro from './pages/Registro';
 import Dashboard from './pages/Dashboard';
 import Tareas from './pages/Tareas';
+import AuthPage from './pages/AuthPage';
 
 const App = () => {
    //Devuelve si esta autentificado de nuestro context
@@ -17,8 +16,8 @@ const App = () => {
       <Routes>
         {/*Rutas Publicas*/ }
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Registro />} />
+        <Route path="/login" element={<AuthPage />} />
+        <Route path="/registro" element={<AuthPage />} />
 
         {/*Rutas Privadas*/ }
         <Route path="/dashboard" element={estaAutenticado ? <Dashboard /> : <Navigate to = "/login" />} />

@@ -127,4 +127,10 @@
   html {
     @apply font-sans;
     }
+
+    
+    @theme {
+      --ease-slide: cubic-bezier(0.65, 0.02, 0.20, 1);
+      --duration-900: 900ms;
+    }
 }
