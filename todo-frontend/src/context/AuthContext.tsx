@@ -30,7 +30,9 @@ export const AuthProvider = ({children }: {children: React.ReactNode}) =>{
     //primero busca en el localstorage por si el usuario ya inicio sesion y tiene un token guardado
     const [token,setToken] = useState <string | null> (localStorage.getItem('token'));
     // Otro UseState para guardar los datos del usuario
-    const [usuario, setUsuario] = useState<Usuario | null>(null);
+    const [usuario, setUsuario] = useState<Usuario | null>(
+        localStorage.getItem('nombre') ? {email: '',nombre: localStorage.getItem('nombre')!}: null
+    );
 
     //funcion para guardar el token y los datos del usuario en el localStorage
     const login = (nuevoToken: string, datosUsuario: Usuario) => {

@@ -1,7 +1,7 @@
 import {useForm} from 'react-hook-form'
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {loginSchema} from '../schema/auth.schema';
+import {loginSchema} from '../schemas/auth.schema';
 import type {LoginDto} from '../types/auth.types';
 import { loginUsuario } from '../api/auth.api';
 import { useNavigate } from 'react-router-dom'; //EQUIVALENTE AL HREF DE HTML
@@ -44,7 +44,10 @@ const Login = ({onSwitch}: Props) =>{
 
             //guarda el token en el authcontext y localstorage
             //respuesta.data es el token que devuelve el backend
-            login(respuesta.data, {email:datos.email, nombre: ''});
+            // leer el nombre guardado en localStorage
+            const nombreGuardado = localStorage.getItem('nombre') ?? '';
+
+            login(respuesta.data, {email:datos.email, nombre: nombreGuardado});
 
             //redirige al dashboard
             navegar('/dashboard');

@@ -21,7 +21,7 @@ const AuthPage = () => {
 
     return (
         // contenedor principal centrado en pantalla
-        <div className='min-h-screen flex items-center justify-center bg-linear-to-b from-purple-400 to-indigo-300 p-10'>
+        <div className='min-h-screen flex items-center justify-center bg-[#d8d5e7] p-10'>
 
             {/* contenedor de la animacion con tamaño fijo */}
             <div className='relative w-[1024px] h-[610px] overflow-hidden rounded-2xl bg-white shadow-2xl'>
