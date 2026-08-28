@@ -1,11 +1,8 @@
 import { Link,useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 
 
 const Sidebar = () => {
 
-    // obtenemos el usuario del contexto para mostrar su nombre
-    const { usuario } = useAuth();
 
     const { pathname } = useLocation();
 
@@ -47,24 +44,7 @@ const Sidebar = () => {
                 <span>☰</span>
                 Tareas
                 </Link>
-
-
             </nav>
-
-            {/* card motivacional - abajo del todo */}
-            <div className='mt-auto'>
-                {/* aquí irá la card */}
-                <div className='bg-[#6C4DF6] rounded-2xl p-4 text-white'>
-                <p className='font-bold text-sm mb-1'>Buen ritmo, {usuario?.nombre}👋</p>
-                <p className='text-xs text-purple-200 mb-3'>Organiza tu día y cumple tus metas.</p>
-    
-    {/* barra de progreso decorativa */}
-    <div className='bg-white/20 rounded-full h-1.5'>
-        <div className='bg-white rounded-full h-1.5 w-2/3' />
-    </div>
-</div>
-            </div>
-
         </aside>
     );
 };
