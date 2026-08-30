@@ -37,12 +37,13 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
+    //"jsx": "react-jsx",
     //"verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
+    "ignoreDeprecations": "5.0",
     "esModuleInterop": true,
     "skipLibCheck": true,
   }
