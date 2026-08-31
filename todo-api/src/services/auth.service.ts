@@ -23,6 +23,7 @@ export const registro = async (usuario : RegistroDto) => {
          const {password,...usuarioSinPassword} = nuevoUsuario
        return usuarioSinPassword
     }catch(error){
+        console.error('ERROR ORIGINAL PRISMA:', JSON.stringify(error));
         throw Error;
     }
 }
@@ -47,6 +48,7 @@ export const login = async (usuario: LoginDto) => {
         return token;
 
     }catch (error){
+        console.error('ERROR ORIGINAL LOGIN:', JSON.stringify(error));
         throw error;
     }
 }
