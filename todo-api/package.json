@@ -8,7 +8,7 @@
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "dev": "nodemon",
-    "build": "rimraf ./dist && npx prisma generate && tsc",
+    "build": "rimraf ./dist && npx prisma generate && npx prisma db push && tsc",
     "start": "npm run build && node dist/app.js"
   },
   "keywords": [],
