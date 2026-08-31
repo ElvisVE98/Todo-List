@@ -23,7 +23,7 @@ export const registro = async (usuario : RegistroDto) => {
          const {password,...usuarioSinPassword} = nuevoUsuario
        return usuarioSinPassword
     }catch(error){
-        throw Error('Error al registrar al Usuario');
+        throw Error;
     }
 }
 
