@@ -11,7 +11,8 @@ export const registro = async (req:Request,res:Response) => {
         res.status(201).json({success:true, data:registrarUsuario})
 
     }catch(error){
-        res.status(500).json({message: ' Error al registrarse'})
+        console.error('ERROR REGISTRO:', error);
+        res.status(500).json({message: ' Error al registrarse', error:error})
     }
 }
 
