@@ -37,11 +37,11 @@ const handleGuardar = () => {
 if (!estaAbierto) return null;
 
     return (
-        // fondo oscuro que cubre toda la pantalla
-        <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
+        // fondo oscuro que cubre toda la pantalla con padding para móvil
+        <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
             
-            {/* contenedor del modal */}
-            <div className='bg-white rounded-2xl p-6 w-full max-w-md shadow-xl'>
+            {/* contenedor del modal con altura máxima y scroll para pantallas pequeñas o teclado abierto */}
+            <div className='bg-white rounded-2xl p-5 sm:p-6 w-full max-w-md max-h-[90vh] overflow-y-auto shadow-xl'>
                 
                 <h2 className='font-bold text-lg mb-4'>
                     {tarea ? 'Editar tarea' : 'Nueva tarea'}

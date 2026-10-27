@@ -45,19 +45,19 @@ const Registro = ({ onSwitch }: Props) => {
     };
 
     return (
-        <div className='w-full max-w-md'>
+        <div className='w-full max-w-md mx-auto'>
 
             {/* logo */}
-            <div className='flex items-center gap-2 mb-8'>
+            <div className='flex items-center gap-2 mb-6 sm:mb-8'>
                 <div className='bg-[#6C4DF6] p-2 rounded-xl'>
                     <span className='text-white text-xl'>✓</span>
                 </div>
                 <span className='font-bold text-xl'>Tareo</span>
             </div>
 
-            {/* título y subtítulo */}
-            <h1 className='text-3xl mb-2 font-semibold'>Crea tu cuenta</h1>
-            <p className='text-gray-500 mb-8'>Es gratis y solo toma un momento.</p>
+            {/* título y subtítulo responsivos */}
+            <h1 className='text-2xl sm:text-3xl mb-1 sm:mb-2 font-semibold text-gray-800'>Crea tu cuenta</h1>
+            <p className='text-gray-500 text-sm sm:text-base mb-6 sm:mb-8'>Es gratis y solo toma un momento.</p>
 
              {/* error general del servidor */}
 
@@ -76,7 +76,7 @@ const Registro = ({ onSwitch }: Props) => {
                         {...register('nombre_completo')}
                         type='text'
                         placeholder='Tu nombre completo'
-                        className='w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
+                        className='w-full border border-gray-200 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
                     />
                     {errors.nombre_completo && <p className='text-red-500 text-xs'> {errors.nombre_completo.message}</p>}
                 </div>
@@ -88,7 +88,7 @@ const Registro = ({ onSwitch }: Props) => {
                         {...register('email')}
                         type='email'
                         placeholder='tu@email.com'
-                        className='w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
+                        className='w-full border border-gray-200 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
                     />
                     {errors.email && <p className='text-red-500 text-xs'> {errors.email.message}</p>}
                 </div>
@@ -100,7 +100,7 @@ const Registro = ({ onSwitch }: Props) => {
                         {...register('password')}
                         type='password'
                         placeholder='••••••••'
-                        className='w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
+                        className='w-full border border-gray-200 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6C4DF6]'
                     />
                     {errors.password && <p className='text-red-500 text-xs'> {errors.password.message}</p>}
                 </div>
@@ -109,7 +109,7 @@ const Registro = ({ onSwitch }: Props) => {
                 <button
                     type='submit'
                     disabled={cargando}
-                    className='w-full bg-[#6C4DF6] text-white font-semibold py-3 rounded-xl hover:bg-[#5a3de0] transition-colors mt-2'
+                    className='w-full bg-[#6C4DF6] text-white font-semibold py-2.5 sm:py-3 rounded-xl hover:bg-[#5a3de0] transition-colors mt-2 text-sm sm:text-base'
                 >
                     Crear cuenta
                 </button>
@@ -117,7 +117,7 @@ const Registro = ({ onSwitch }: Props) => {
             </form>
 
             {/* link al login - onSwitch activa la animacion para volver */}
-            <p className='text-center text-sm text-gray-500 mt-6'>
+            <p className='text-center text-sm text-gray-500 mt-5 sm:mt-6'>
                 ¿Ya tienes cuenta?{' '}
                 <button
                     onClick={onSwitch}

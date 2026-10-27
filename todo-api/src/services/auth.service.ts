@@ -12,7 +12,6 @@ import { envs } from '../config/envs.js';
 export const registro = async (usuario : RegistroDto) => {
     try{
         const passwordEncriptada = await bcrypt.hash(usuario.password,10)
-       
         const nuevoUsuario = await prisma.usuario.create({
             data:{
             email: usuario.email,

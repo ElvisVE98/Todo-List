@@ -9,40 +9,37 @@ const AuthPage = () => {
     const [esRegistro, setEsRegistro] = useState(false);
 
     // función que calcula las clases del panel de formulario
-    // visible = true → aparece con opacidad 100 y sin desplazamiento
-    // visible = false → desaparece con opacidad 0 y desplazado 14px hacia abajo
+    // en desktop: posición absoluta y ocupa el 50% de ancho con animación retrasada
+    // en móvil: ocupa el ancho completo y oculta el formulario inactivo
     const clasePanel = (visible: boolean) =>
-        `absolute inset-y-0 w-1/2 flex items-center justify-center px-6
+        `w-full lg:w-1/2 lg:inset-y-0 flex items-center justify-center px-4 sm:px-6
          transition-all duration-500
          ${visible
-            ? 'opacity-100 translate-y-0 delay-[340ms] pointer-events-auto'
-            : 'opacity-0 translate-y-3.5 pointer-events-none'
+            ? 'opacity-100 translate-y-0 delay-100 lg:delay-[340ms] pointer-events-auto relative lg:absolute'
+            : 'opacity-0 translate-y-3.5 pointer-events-none hidden lg:flex lg:absolute'
         }`;
 
     return (
-        // contenedor principal centrado en pantalla
-        <div className='min-h-screen flex items-center justify-center bg-[#d8d5e7] p-10'>
+        // contenedor principal centrado en pantalla con padding adaptable
+        <div className='min-h-screen flex items-center justify-center bg-[#d8d5e7] p-4 sm:p-6 lg:p-10'>
 
-            {/* contenedor de la animacion con tamaño fijo */}
-            <div className='relative w-[1024px] h-[610px] overflow-hidden rounded-2xl bg-white shadow-2xl'>
+            {/* contenedor de autenticación: fluido en móvil y tamaño fijo de dos columnas en escritorio */}
+            <div className='relative w-full max-w-md lg:max-w-none lg:w-[1024px] lg:h-[610px] overflow-hidden rounded-2xl bg-white shadow-2xl py-8 px-4 sm:p-8 lg:p-0'>
 
                 {/* panel del login - visible cuando esRegistro es false */}
-                {/* left-0 = lado izquierdo */}
-                <div className={`${clasePanel(!esRegistro)} left-0`}>
-                    {/* onSwitch cambia esRegistro a true y activa la animacion */}
+                <div className={`${clasePanel(!esRegistro)} lg:left-0`}>
+                    {/* onSwitch cambia esRegistro a true y activa la transicion */}
                     <Login onSwitch={() => setEsRegistro(true)} />
                 </div>
 
                 {/* panel del registro - visible cuando esRegistro es true */}
-                {/* left-1/2 = lado derecho */}
-                <div className={`${clasePanel(esRegistro)} left-1/2`}>
-                    {/* onSwitch cambia esRegistro a false y activa la animacion */}
+                <div className={`${clasePanel(esRegistro)} lg:left-1/2`}>
+                    {/* onSwitch cambia esRegistro a false y activa la transicion */}
                     <Registro onSwitch={() => setEsRegistro(false)} />
                 </div>
 
-                {/* panel morado deslizante */}
-                {/* empieza a la derecha (translate-x-full) y se mueve a la izquierda (translate-x-0) */}
-                <div className={`absolute inset-y-0 left-0 z-10 w-1/2 overflow-hidden
+                {/* panel morado deslizante - visible en pantallas de escritorio (lg en adelante) */}
+                <div className={`hidden lg:block absolute inset-y-0 left-0 z-10 w-1/2 overflow-hidden
                                 will-change-transform transition-transform duration-[900ms]
                                 ${esRegistro ? 'translate-x-0' : 'translate-x-full'}`}>
 
